@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <nav id="navbar">
+    <ul>
+      <li><a href="#">Weather</a></li>
+      <li><a href="#">Location</a></li>
+      <li><a href="#">Forecast</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>Check Weather</h1>
+    <form id="weather-form">
+      <input type="text" id="city-input" placeholder="Enter city name..." />
+      <button type="submit">Get Weather</button>
+    </form>
+
+    <button id="geo-btn">Use My Location</button>
+
+    <div id="weather-result" class="weather-box">
+      <h2 id="location">Location</h2>
+      <p id="temperature">Temperature:</p>
+      <p id="description">Description:</p>
+      <p id="humidity">Humidity:</p>
+      <p id="wind">Wind Speed:</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
