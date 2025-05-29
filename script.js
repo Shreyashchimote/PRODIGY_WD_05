@@ -1,4 +1,4 @@
-const apiKey = 'YOUR_API_KEY_HERE'; // Replace with your OpenWeatherMap API key
+const apiKey = '339e8ef32597cea585e5fa6f331f68c1';
 
 const form = document.getElementById('weather-form');
 const input = document.getElementById('city-input');
@@ -24,7 +24,10 @@ geoBtn.addEventListener('click', function () {
       position => {
         fetchWeatherByCoords(position.coords.latitude, position.coords.longitude);
       },
-      () => alert("Unable to retrieve your location.")
+      error => {
+        console.error("Geolocation Error:", error);
+        alert("Unable to retrieve your location.");
+      }
     );
   } else {
     alert("Geolocation is not supported by this browser.");
@@ -45,13 +48,17 @@ function fetchWeather(url) {
   fetch(url)
     .then(res => res.json())
     .then(data => {
+      console.log("API Response:", data); // Debug log
       if (data.cod !== 200) {
-        alert(data.message);
+        alert(`Error: ${data.message}`);
         return;
       }
       updateWeatherUI(data);
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      console.error("Fetch Error:", err);
+      alert("Something went wrong while fetching weather data.");
+    });
 }
 
 function updateWeatherUI(data) {
@@ -62,7 +69,7 @@ function updateWeatherUI(data) {
   windEl.textContent = `Wind Speed: ${data.wind.speed} m/s`;
 }
 
-// Scroll navbar effect
+// Scroll effect on navbar
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 50);
